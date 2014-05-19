@@ -39,9 +39,7 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 import appier
 
-from live import user
-
-BASE_URL = "https://graph.facebook.com/"
+BASE_URL = "https://login.live.com/"
 """ The default base url to be used when no other
 base url value is provided to the constructor """
 
@@ -64,8 +62,7 @@ SCOPE = (
 scope string for the oauth value """
 
 class Api(
-    appier.OAuth2Api,
-    user.UserApi
+    appier.OAuth2Api
 ):
 
     def __init__(self, *args, **kwargs):
@@ -78,7 +75,7 @@ class Api(
         self.access_token = kwargs.get("access_token", None)
 
     def oauth_authorize(self, state = None):
-        url = "https://www.facebook.com/dialog/oauth"
+        url = BASE_URL + "oauth20_authorize.srf"
         values = dict(
             client_id = self.client_id,
             redirect_uri = self.redirect_url,
@@ -91,7 +88,7 @@ class Api(
         return url
 
     def oauth_access(self, code, long = True):
-        url = self.base_url + "oauth/access_token"
+        url = self.base_url + "oauth20_token"
         contents = self.post(
             url,
             token = False,
