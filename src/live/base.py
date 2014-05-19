@@ -63,6 +63,7 @@ in case none is provided to the api (client) """
 
 SCOPE = (
     "wl.basic",
+    "wl.emails"
 )
 """ The list of permissions to be used to create the
 scope string for the oauth value """
