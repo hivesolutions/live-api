@@ -41,10 +41,10 @@ import appier
 
 from examples import base
 
-class Microsoft LiveApp(appier.WebApp):
+class LiveApp(appier.WebApp):
 
     def __init__(self):
-        appier.WebApp.__init__(self, name = "facebook")
+        appier.WebApp.__init__(self, name = "live")
 
     @appier.route("/", "GET")
     def index(self):
@@ -63,30 +63,30 @@ class Microsoft LiveApp(appier.WebApp):
         code = self.field("code")
         api = self.get_api()
         access_token = api.oauth_access(code)
-        self.session["fb.access_token"] = access_token
+        self.session["live.access_token"] = access_token
         return self.redirect(
-            self.url_for("facebook.index")
+            self.url_for("live.index")
         )
 
     @appier.exception_handler(appier.OAuthAccessError)
     def oauth_error(self, error):
-        if "fb.access_token" in self.session: del self.session["fb.access_token"]
+        if "live.access_token" in self.session: del self.session["live.access_token"]
         return self.redirect(
-            self.url_for("facebook.index")
+            self.url_for("live.index")
         )
 
     def ensure_api(self):
-        access_token = self.session.get("fb.access_token", None)
+        access_token = self.session.get("live.access_token", None)
         if access_token: return
         api = base.get_api()
         return api.oauth_authorize()
 
     def get_api(self):
-        access_token = self.session and self.session.get("fb.access_token", None)
+        access_token = self.session and self.session.get("live.access_token", None)
         api = base.get_api()
         api.access_token = access_token
         return api
 
 if __name__ == "__main__":
-    app = Microsoft LiveApp()
+    app = LiveApp()
     app.serve()

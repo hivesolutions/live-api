@@ -39,11 +39,11 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 import appier
 
-import facebook
+import live
 
 def get_api():
-    return facebook.Api(
-        client_id = appier.conf("FB_ID"),
-        client_secret = appier.conf("FB_SECRET"),
-        redirect_url = appier.conf("FB_REDIRECT_URL")
+    return live.Api(
+        client_id = appier.conf("LIVE_ID"),
+        client_secret = appier.conf("LIVE_SECRET"),
+        redirect_url = appier.conf("LIVE_REDIRECT_URL")
     )
