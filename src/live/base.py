@@ -71,6 +71,15 @@ class Api(
     appier.OAuth2Api,
     user.UserApi
 ):
+    """
+    Implementation of the Microsoft Live API specification
+    for a simplified python client usage.
+
+    The implementation is a subset of the complete set of call
+    and conforms with the OAuth 2 authentication process.
+
+    @see: http://msdn.microsoft.com/en-us/library/hh243648.aspx
+    """
 
     def __init__(self, *args, **kwargs):
         appier.OAuth2Api.__init__(self, *args, **kwargs)
