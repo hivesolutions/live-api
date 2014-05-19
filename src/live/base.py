@@ -39,9 +39,15 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 import appier
 
-BASE_URL = "https://login.live.com/"
+from live import user
+
+BASE_URL = "https://apis.live.net/v5.0/"
 """ The default base url to be used when no other
 base url value is provided to the constructor """
+
+LOGIN_URL = "https://login.live.com/"
+""" Default base url that is going to be used for the
+login part of the specification, the oauth login basis """
 
 CLIENT_ID = None
 """ The default value to be used for the client id
@@ -56,26 +62,29 @@ REDIRECT_URL = "http://localhost:8080/oauth"
 in case none is provided to the api (client) """
 
 SCOPE = (
-    "email",
+    "wl.basic",
 )
 """ The list of permissions to be used to create the
 scope string for the oauth value """
 
 class Api(
-    appier.OAuth2Api
+    appier.OAuth2Api,
+    user.UserApi
 ):
 
     def __init__(self, *args, **kwargs):
         appier.OAuth2Api.__init__(self, *args, **kwargs)
         self.base_url = kwargs.get("base_url", BASE_URL)
+        self.login_url = kwargs.get("login_url", LOGIN_URL)
         self.client_id = kwargs.get("client_id", CLIENT_ID)
         self.client_secret = kwargs.get("client_secret", CLIENT_SECRET)
         self.redirect_url = kwargs.get("redirect_url", REDIRECT_URL)
         self.scope = kwargs.get("scope", SCOPE)
         self.access_token = kwargs.get("access_token", None)
+        self.refresh_token = kwargs.get("refresh_token", None)
 
     def oauth_authorize(self, state = None):
-        url = BASE_URL + "oauth20_authorize.srf"
+        url = self.login_url + "oauth20_authorize.srf"
         values = dict(
             client_id = self.client_id,
             redirect_uri = self.redirect_url,
@@ -87,8 +96,8 @@ class Api(
         url = url + "?" + data
         return url
 
-    def oauth_access(self, code, long = True):
-        url = self.base_url + "oauth20_token"
+    def oauth_access(self, code):
+        url = self.login_url + "oauth20_token.srf"
         contents = self.post(
             url,
             token = False,
@@ -98,9 +107,6 @@ class Api(
             redirect_uri = self.redirect_url,
             code = code
         )
-        contents = contents.decode("utf-8")
-        contents = appier.parse_qs(contents)
-        self.access_token = contents["access_token"][0]
+        self.access_token = contents["access_token"]
         self.trigger("access_token", self.access_token)
-        if long: self.access_token = self.oauth_long_lived(self.access_token)
         return self.access_token
