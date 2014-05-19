@@ -91,7 +91,6 @@ class Api(
         self.redirect_url = kwargs.get("redirect_url", REDIRECT_URL)
         self.scope = kwargs.get("scope", SCOPE)
         self.access_token = kwargs.get("access_token", None)
-        self.refresh_token = kwargs.get("refresh_token", None)
 
     def oauth_authorize(self, state = None):
         url = self.login_url + "oauth20_authorize.srf"
