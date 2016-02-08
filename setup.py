@@ -46,7 +46,7 @@ setuptools.setup(
     author = "Hive Solutions Lda.",
     author_email = "development@hive.pt",
     description = "Microsoft Live API Client",
-    license = "GNU General Public License (GPL), Version 3",
+    license = "Apache License, Version 2.0",
     keywords = "microsoft live api",
     url = "http://live_api.hive.pt",
     zip_safe = False,
