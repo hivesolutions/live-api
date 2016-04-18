@@ -4,4 +4,5 @@
 session.shelve*
 
 /dist
+/build
 /src/live_api.egg-info
