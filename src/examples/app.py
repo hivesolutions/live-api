@@ -94,3 +94,5 @@ class LiveApp(appier.WebApp):
 if __name__ == "__main__":
     app = LiveApp()
     app.serve()
+else:
+    __path__ = []
