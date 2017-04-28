@@ -122,3 +122,7 @@ class Api(
         self.access_token = contents["access_token"]
         self.trigger("access_token", self.access_token)
         return self.access_token
+
+    @property
+    def oauth_types(self):
+        return ("header",)
