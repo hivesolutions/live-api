@@ -1,4 +1,4 @@
-# [Microsoft Live API](http://live_api.hive.pt)
+# [Microsoft Live API](http://live-api.hive.pt)
 
 Client implementation of the Microsoft Live API.
 
