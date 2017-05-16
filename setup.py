@@ -48,7 +48,7 @@ setuptools.setup(
     description = "Microsoft Live API Client",
     license = "Apache License, Version 2.0",
     keywords = "microsoft live api",
-    url = "http://live_api.hive.pt",
+    url = "http://live-api.hive.pt",
     zip_safe = False,
     packages = [
         "live"
