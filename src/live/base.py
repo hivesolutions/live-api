@@ -68,9 +68,9 @@ SCOPE = (
 """ The list of permissions to be used to create the
 scope string for the oauth value """
 
-class Api(
-    appier.OAuth2Api,
-    user.UserApi
+class API(
+    appier.OAuth2API,
+    user.UserAPI
 ):
     """
     Implementation of the Microsoft Live API specification
@@ -83,7 +83,7 @@ class Api(
     """
 
     def __init__(self, *args, **kwargs):
-        appier.OAuth2Api.__init__(self, *args, **kwargs)
+        appier.OAuth2API.__init__(self, *args, **kwargs)
         self.client_id = appier.conf("LIVE_ID", CLIENT_ID)
         self.client_secret = appier.conf("LIVE_SECRET", CLIENT_SECRET)
         self.redirect_url = appier.conf("LIVE_REDIRECT_URL", REDIRECT_URL)
