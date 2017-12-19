@@ -42,8 +42,8 @@ import appier
 from . import user
 
 BASE_URL = "https://apis.live.net/v5.0/"
-""" The default base url to be used when no other
-base url value is provided to the constructor """
+""" The default base URL to be used when no other
+base URL value is provided to the constructor """
 
 LOGIN_URL = "https://login.live.com/"
 """ Default base url that is going to be used for the
