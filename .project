@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>live_api</name>
+	<name>live-api</name>
 	<comment></comment>
 	<projects>
 		<project>appier</project>
