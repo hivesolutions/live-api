@@ -42,6 +42,7 @@ setuptools.setup(
     url="http://live-api.hive.pt",
     zip_safe=False,
     packages=["live"],
+    test_suite="live.test",
     package_dir={"": os.path.normpath("src")},
     install_requires=["appier"],
     classifiers=[
